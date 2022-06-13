@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { GifsService } from '../services/gifs.service';
 
 @Component({
   selector: 'app-busqueda',
@@ -14,11 +15,23 @@ export class BusquedaComponent  {
 //(!) indica que sera una negación del un valor null
   @ViewChild('txtBusqueda') txtBusqueda!:ElementRef<HTMLInputElement>
  // ElementRef acepta todo tipo de valores , por lo que se le tiene que indicar que valor debe de usar
+ 
+ 
+ //mandamos a llamar nuestro servicio
+  constructor(
+   private gifsService:GifsService
+  ){
 
+  }
 
   busqueda(){
     const valor = this.txtBusqueda.nativeElement.value;
-    console.log('//'+ valor );
+    
+    if (valor.trim().length === 0) {
+      return
+    }
+    this.gifsService.busquedaGifs(valor)
+    
     this.txtBusqueda.nativeElement.value = ''
   }
 

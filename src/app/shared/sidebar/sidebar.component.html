@@ -3,14 +3,14 @@
 
   <hr class="text-white" />
 
-  <div class="list-group list-rest">
+  <div class="list-group list-rest" >
     <a
+    *ngFor="let res of historial"
+      (click)="buscar( res )"
       href="#"
-      target="_blank"
-      rel="noopener noreferrer"
       class="list-group-item list-group-item-action"
     >
-      Dashboard
+      {{res | titlecase}}
     </a>
   </div>
 </div>
